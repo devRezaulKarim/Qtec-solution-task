@@ -30,6 +30,12 @@ export const GlobalProvider = ({ children }) => {
       payload: id,
     });
   };
+  const updateTask = (data) => {
+    dispatch({
+      type: types.updateTask,
+      payload: data,
+    });
+  };
 
   useEffect(() => {
     localStorage.setItem("allTasks", JSON.stringify(state));
@@ -42,6 +48,7 @@ export const GlobalProvider = ({ children }) => {
         addTask,
         deleteTask,
         toggleComplete,
+        updateTask,
       }}
     >
       {children}

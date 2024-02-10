@@ -27,6 +27,19 @@ export const reducer = (state, action) => {
         }),
       };
 
+    case types.updateTask:
+      return{
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.payload.id) {
+            return {
+              ...task,
+              todo: action.payload.todo,
+            };
+          } else return task;
+        }),
+      }
+
     default:
       return state;
   }
