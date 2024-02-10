@@ -18,6 +18,12 @@ export const GlobalProvider = ({ children }) => {
       payload: task,
     });
   }
+  function deleteTask(id) {
+    dispatch({
+      type: types.deleteTask,
+      payload: id,
+    });
+  }
 
   useEffect(() => {
     localStorage.setItem("allTasks", JSON.stringify(state));
@@ -28,6 +34,7 @@ export const GlobalProvider = ({ children }) => {
       value={{
         tasks: state.tasks,
         addTask,
+        deleteTask,
       }}
     >
       {children}
