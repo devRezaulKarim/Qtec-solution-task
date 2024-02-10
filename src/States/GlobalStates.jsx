@@ -12,18 +12,24 @@ export const GlobalContext = createContext(initValue);
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initValue);
 
-  function addTask(task) {
+  const addTask = (task) => {
     dispatch({
       type: types.addTask,
       payload: task,
     });
-  }
-  function deleteTask(id) {
+  };
+  const deleteTask = (id) => {
     dispatch({
       type: types.deleteTask,
       payload: id,
     });
-  }
+  };
+  const toggleComplete = (id) => {
+    dispatch({
+      type: types.completeTask,
+      payload: id,
+    });
+  };
 
   useEffect(() => {
     localStorage.setItem("allTasks", JSON.stringify(state));
@@ -35,6 +41,7 @@ export const GlobalProvider = ({ children }) => {
         tasks: state.tasks,
         addTask,
         deleteTask,
+        toggleComplete,
       }}
     >
       {children}
