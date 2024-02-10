@@ -19,6 +19,7 @@ export default function AddTaskForm() {
 
     if (task.trim()) {
       const newTask = {
+        id: Date.now(),
         task: task.trim(),
         priority,
         isComplete: false,

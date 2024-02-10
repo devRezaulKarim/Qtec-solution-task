@@ -5,7 +5,6 @@ import { types } from "../useReducer/actionType";
 
 const initValue = JSON.parse(localStorage.getItem("allTasks")) ?? {
   tasks: [],
-  completeTask: [],
 };
 
 export const GlobalContext = createContext(initValue);
@@ -28,7 +27,6 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         tasks: state.tasks,
-        completeTasks: state.completeTask,
         addTask,
       }}
     >
