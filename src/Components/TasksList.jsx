@@ -7,9 +7,12 @@ export default function TasksList({ tasks, completeTasks }) {
   const [updatingId, setUpdatingId] = useState(null);
   return (
     <div>
-      <h3 className={`${Styles.heading} ${Styles[completeTasks]}`}>
-        {completeTasks ? "Completed" : "Incomplete"} Tasks: {tasks.length}
+      <h3 className={Styles.heading}>
+        <span>
+          {completeTasks ? "Completed" : "Incomplete"} Tasks: {tasks.length}
+        </span>
       </h3>
+
       <div className={Styles.tasksList}>
         {tasks.map((task) => (
           <TaskItem

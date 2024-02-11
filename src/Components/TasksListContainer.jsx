@@ -62,7 +62,13 @@ export default function TasksListContainer() {
       </div>
 
       {filteredTask.length > 0 ? (
-        <div className={Styles.tasksList}>
+        <div
+          className={`${Styles.tasksList} ${
+            incompleteTasks.length > 0 &&
+            completeTasks.length > 0 &&
+            Styles.verticalLine
+          }`}
+        >
           {incompleteTasks.length > 0 && (
             <div className={Styles.incompleteTasks}>
               <CompleteTasksList tasks={incompleteTasks} />

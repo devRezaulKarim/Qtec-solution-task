@@ -13,7 +13,10 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
   const { id, todo, isComplete, priority } = task;
   const { deleteTask, toggleComplete, updateTask } = useContext(GlobalContext);
 
-  const [updateTodo, setUpdateTodo] = useState("");
+  //states for updating todo and priority
+  const [updateTodo, setUpdateTodo] = useState(todo);
+  const [updatePriority, setUpdatePriority] = useState(priority);
+  const priorities = ["High", "Medium", "Low"];
 
   //handle task deletion
   const handleDeleteTask = (id) => {
@@ -28,12 +31,11 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
   // handle task update
   const handleUpdateTask = (id) => {
     setUpdatingId(id);
-    setUpdateTodo(todo);
   };
 
   const handleSavingUpdateTask = (e) => {
     e.preventDefault();
-    updateTask({ todo: updateTodo, id: updatingId });
+    updateTask({ todo: updateTodo, id: updatingId, priority: updatePriority });
     setUpdatingId(null);
   };
 
@@ -43,6 +45,7 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
         {updatingId === id ? (
           <form onSubmit={handleSavingUpdateTask} action="">
             <input
+              className={Styles.editInput}
               value={updateTodo}
               type="text"
               onChange={(e) => setUpdateTodo(e.target.value)}
@@ -55,7 +58,24 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
 
       <div className={Styles.taskItemBottom}>
         <div className={Styles.priority_status}>
-          <span className={Styles.priority}>Priority: {priority}</span>
+          {updatingId === id ? (
+            <div>
+              <label htmlFor="priority">Priority Level: </label>
+              <select
+                name=""
+                id="priority"
+                value={updatePriority}
+                onChange={(e) => setUpdatePriority(e.target.value)}
+              >
+                {priorities.map((p) => (
+                  <option key={p}>{p}</option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <span className={Styles.priority}>Priority: {priority}</span>
+          )}
+
           <span>{isComplete ? "Completed" : "Incomplete"}</span>
         </div>
 

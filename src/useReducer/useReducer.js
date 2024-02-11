@@ -35,6 +35,7 @@ export const reducer = (state, action) => {
             return {
               ...task,
               todo: action.payload.todo,
+              priority: action.payload.priority
             };
           } else return task;
         }),
