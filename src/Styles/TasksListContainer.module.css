@@ -1,0 +1,31 @@
+.tasksListContainer {
+  padding: 16px;
+  border: 4px solid aquamarine;
+}
+.taskListHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding-bottom: 8px;
+}
+
+.emptyTaskMessage {
+  text-align: center;
+  color: red;
+  margin-top: 8px;
+}
+
+.tasksList {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+}
+
+.incompleteTasks,
+.completeTasks {
+  min-width: 49%;
+  border: 2px solid black;
+  padding: 8px;
+}

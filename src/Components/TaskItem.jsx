@@ -1,5 +1,12 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../States/GlobalStates";
+import Styles from "../Styles/TaskItem.module.css";
+
+//icons
+import { MdDelete } from "react-icons/md";
+import { MdEditDocument } from "react-icons/md";
+import { FaCheckSquare } from "react-icons/fa";
+import { FaSave } from "react-icons/fa";
 
 /* eslint-disable react/prop-types */
 export default function TaskItem({ task, updatingId, setUpdatingId }) {
@@ -31,7 +38,7 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
   };
 
   return (
-    <div>
+    <div className={`${Styles.taskItem} ${Styles[priority]}`}>
       <div>
         {updatingId === id ? (
           <form onSubmit={handleSavingUpdateTask} action="">
@@ -44,28 +51,57 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
         ) : (
           <p>{todo}</p>
         )}
-
-        <div>
-          <span>Priority: {priority}</span>
-          <span>Status: {isComplete ? "Completed" : "Incomplete"}</span>
-        </div>
       </div>
-      <div className="taskItemBtns">
-        {updatingId !== id && !isComplete && (
-          <button onClick={() => handleCompleteTask(id)}>
-            Mark as Complete
+
+      <div className={Styles.taskItemBottom}>
+        <div className={Styles.priority_status}>
+          <span className={Styles.priority}>Priority: {priority}</span>
+          <span>{isComplete ? "Completed" : "Incomplete"}</span>
+        </div>
+
+        {/*
+
+Buttons
+
+*/}
+
+        <div className={`${Styles.taskItemBtns} ${Styles[isComplete]}`}>
+          {updatingId !== id && !isComplete && (
+            <button
+              className={Styles.completeBtn}
+              onClick={() => handleCompleteTask(id)}
+            >
+              <FaCheckSquare />
+            </button>
+          )}
+
+          {/* showing the complete button if task is not completed and not in updating state, if task is in updating state then showing the save button */}
+
+          {!isComplete && updatingId !== id ? (
+            <button
+              className={Styles.updateBtn}
+              onClick={() => handleUpdateTask(id)}
+            >
+              <MdEditDocument />
+            </button>
+          ) : (
+            !isComplete && (
+              <button
+                className={Styles.updateBtn}
+                onClick={handleSavingUpdateTask}
+              >
+                <FaSave />
+              </button>
+            )
+          )}
+
+          <button
+            className={Styles.deleteBtn}
+            onClick={() => handleDeleteTask(id)}
+          >
+            <MdDelete />
           </button>
-        )}
-
-        {/* showing the complete button if task is not completed and not in updating state, if task is in updating state then showing the save button */}
-
-        {!isComplete && updatingId !== id ? (
-          <button onClick={() => handleUpdateTask(id)}>Update</button>
-        ) : (
-          !isComplete && <button onClick={handleSavingUpdateTask}>Save</button>
-        )}
-
-        <button onClick={() => handleDeleteTask(id)}>Delete</button>
+        </div>
       </div>
     </div>
   );

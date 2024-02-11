@@ -1,0 +1,63 @@
+.taskItem {
+  padding: 4px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.taskItemBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    font-size: 20px;
+    padding: 2px 6px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .completeBtn {
+    color: green;
+  }
+
+  .updateBtn {
+    color: orangered;
+  }
+
+  .deleteBtn {
+    color: red;
+  }
+}
+.taskItemBtns.true {
+  justify-content: end;
+}
+.High {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.25);
+  border-radius: 6px;
+}
+.Medium {
+  border: 2px solid yellow;
+  background-color: rgba(255, 255, 0, 0.25);
+  border-radius: 6px;
+}
+.Low {
+  border: 2px solid green;
+  background-color: rgba(0, 255, 0, 0.25);
+  border-radius: 6px;
+}
+
+.priority_status {
+  margin-block: 8px;
+  display: flex;
+  justify-content: space-between;
+
+  .priority {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}

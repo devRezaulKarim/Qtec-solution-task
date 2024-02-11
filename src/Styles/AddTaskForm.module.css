@@ -14,7 +14,7 @@
   width: 100%;
   font-size: 20px;
   padding: 4px 8px;
-  border-radius: 8px;
+  border-radius: 6px;
   border: none;
   &:focus {
     outline: 2px solid gray;
@@ -32,7 +32,7 @@
   font-size: 18px;
   padding: 8px 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 4px;
