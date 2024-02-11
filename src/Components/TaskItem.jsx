@@ -45,12 +45,15 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
           <p>{todo}</p>
         )}
 
-        <span>Priority: {priority}</span>
+        <div>
+          <span>Priority: {priority}</span>
+          <span>Status: {isComplete ? "Completed" : "Incomplete"}</span>
+        </div>
       </div>
       <div className="taskItemBtns">
-        {updatingId !== id && (
+        {updatingId !== id && !isComplete && (
           <button onClick={() => handleCompleteTask(id)}>
-            {isComplete ? "Completed" : "Complete"}
+            Mark as Complete
           </button>
         )}
 

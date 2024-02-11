@@ -21,7 +21,7 @@ export const reducer = (state, action) => {
           if (task.id === action.payload) {
             return {
               ...task,
-              isComplete: !task.isComplete,
+              isComplete: true,
             };
           } else return task;
         }),
