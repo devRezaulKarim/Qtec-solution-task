@@ -8,6 +8,7 @@ export default function Home() {
       <h1 className={Styles.title}>Qtec Solution Todo list</h1>
       <AddTaskForm />
       <TasksListContainer />
+      <p className={Styles.copyright}>Developed by Md. Rezaul Karim</p>
     </div>
   );
 }

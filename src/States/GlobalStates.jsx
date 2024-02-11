@@ -24,7 +24,7 @@ export const GlobalProvider = ({ children }) => {
       payload: id,
     });
   };
-  const toggleComplete = (id) => {
+  const completeTask = (id) => {
     dispatch({
       type: types.completeTask,
       payload: id,
@@ -47,7 +47,7 @@ export const GlobalProvider = ({ children }) => {
         tasks: state.tasks,
         addTask,
         deleteTask,
-        toggleComplete,
+        completeTask,
         updateTask,
       }}
     >

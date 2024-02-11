@@ -10,23 +10,28 @@ import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 /* eslint-disable react/prop-types */
-export default function TaskItem({ task, updatingId, setUpdatingId }) {
+export default function TaskItem({
+  task,
+  updatingId,
+  setUpdatingId,
+  setDeletingTaskId,
+}) {
   const { id, todo, isComplete, priority } = task;
-  const { deleteTask, toggleComplete, updateTask } = useContext(GlobalContext);
+  const { completeTask, updateTask } = useContext(GlobalContext);
 
   //states for updating todo and priority
   const [updateTodo, setUpdateTodo] = useState(todo);
   const [updatePriority, setUpdatePriority] = useState(priority);
   const priorities = ["High", "Medium", "Low"];
 
-  //handle task deletion
-  const handleDeleteTask = (id) => {
-    deleteTask(id);
-  };
-
   //handle task completion
   const handleCompleteTask = (id) => {
-    toggleComplete(id);
+    completeTask(id);
+    toast.success("Task completed!", {
+      autoClose: 1500,
+      theme: "colored",
+      hideProgressBar: true,
+    });
   };
 
   // handle task update
@@ -44,6 +49,11 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
         priority: updatePriority,
       });
       setUpdatingId(null);
+      toast.success("Task updated successfully!", {
+        autoClose: 2000,
+        theme: "colored",
+        hideProgressBar: true,
+      });
     } else {
       toast.warn("Task can't be empty!", {
         autoClose: 1500,
@@ -102,6 +112,7 @@ Buttons
         <div className={`${Styles.taskItemBtns} ${Styles[isComplete]}`}>
           {updatingId !== id && !isComplete && (
             <button
+              title="Mark as completed"
               className={Styles.completeBtn}
               onClick={() => handleCompleteTask(id)}
             >
@@ -113,6 +124,7 @@ Buttons
 
           {!isComplete && updatingId !== id ? (
             <button
+              title="Update Task"
               className={Styles.updateBtn}
               onClick={() => handleUpdateTask(id)}
             >
@@ -121,6 +133,7 @@ Buttons
           ) : (
             !isComplete && (
               <button
+                title="Save"
                 className={Styles.updateBtn}
                 onClick={handleSavingUpdateTask}
               >
@@ -130,8 +143,9 @@ Buttons
           )}
 
           <button
+            title="Delete Task"
             className={Styles.deleteBtn}
-            onClick={() => handleDeleteTask(id)}
+            onClick={() => setDeletingTaskId(id)}
           >
             <MdDelete />
           </button>

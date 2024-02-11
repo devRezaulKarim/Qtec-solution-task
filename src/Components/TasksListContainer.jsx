@@ -1,7 +1,7 @@
 import Styles from "../Styles/TasksListContainer.module.css";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../States/GlobalStates";
-import CompleteTasksList from "./TasksList";
+import TasksList from "./TasksList";
 
 export default function TasksListContainer() {
   const { tasks } = useContext(GlobalContext);
@@ -71,12 +71,12 @@ export default function TasksListContainer() {
         >
           {incompleteTasks.length > 0 && (
             <div className={Styles.incompleteTasks}>
-              <CompleteTasksList tasks={incompleteTasks} />
+              <TasksList tasks={incompleteTasks} />
             </div>
           )}
           {completeTasks.length > 0 && (
             <div className={Styles.completeTasks}>
-              <CompleteTasksList tasks={completeTasks} completeTasks={true} />
+              <TasksList tasks={completeTasks} completeTasks={true} />
             </div>
           )}
         </div>
