@@ -1,7 +1,11 @@
-import { useContext, useState } from "react";
 import Styles from "../Styles/AddTaskForm.module.css";
-import { toast } from "react-toastify";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../States/GlobalStates";
+//toast message
+import { toast } from "react-toastify";
+
+//icons
+import { MdAddTask } from "react-icons/md";
 
 export default function AddTaskForm() {
   const priorities = ["High", "Medium", "Low"];
@@ -40,7 +44,6 @@ export default function AddTaskForm() {
     <div className={Styles.formContainer}>
       <form onSubmit={handleSubmit} action="">
         <div className={Styles.taskInput}>
-          <label htmlFor="taskInput">Task: </label>
           <input
             placeholder="Enter Task"
             type="text"
@@ -50,21 +53,27 @@ export default function AddTaskForm() {
             onChange={(e) => setTask(e.target.value)}
           />
         </div>
-        <div className={Styles.taskInput}>
-          <label htmlFor="priority">Priority Level: </label>
-          <select
-            name=""
-            id="priority"
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
-          >
-            {priorities.map((p) => (
-              <option key={p}>{p}</option>
-            ))}
-          </select>
-        </div>
-        <div className={Styles.Btn}>
-          <button>Add Task</button>
+        <div className={Styles.priority_btn}>
+          <div className={Styles.priority}>
+            <label htmlFor="priority">Priority Level: </label>
+            <select
+              name=""
+              id="priority"
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+            >
+              {priorities.map((p) => (
+                <option key={p}>{p}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className={Styles.btn}>
+            <button>
+              <MdAddTask />
+              Add Task
+            </button>
+          </div>
         </div>
       </form>
     </div>
