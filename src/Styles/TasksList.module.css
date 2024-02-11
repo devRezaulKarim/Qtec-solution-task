@@ -35,7 +35,7 @@
 
   & .modalBox {
     background-color: #fff;
-    width: 400px;
+    width: 350px;
     height: 150px;
     border-radius: 8px;
     padding: 8px;
@@ -68,5 +68,11 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tasksList {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

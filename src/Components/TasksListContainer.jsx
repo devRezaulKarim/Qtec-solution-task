@@ -7,6 +7,8 @@ export default function TasksListContainer() {
   const { tasks } = useContext(GlobalContext);
   const [filteredTask, setFilteredTask] = useState([...tasks]);
   const [filter, setFilter] = useState("default");
+
+  //filtering task based on status
   const [completeTasks, setCompleteTasks] = useState(
     filteredTask.filter((t) => t.isComplete)
   );
@@ -20,6 +22,8 @@ export default function TasksListContainer() {
     { text: "Low to High Priority", value: "low" },
   ];
 
+
+  //handling basic filtering based on priority
   useEffect(() => {
     if (filter === "default") {
       setFilteredTask([...tasks]);
@@ -47,19 +51,21 @@ export default function TasksListContainer() {
 
   return (
     <div className={Styles.tasksListContainer}>
-      <div className={Styles.taskListHeading}>
-        <h2>Total Tasks: {tasks.length}</h2>
-        <div>
-          <label htmlFor="filter">Filter: </label>
-          <select onChange={handleFilter} name="" id="filter">
-            {priorities.map((p) => (
-              <option key={p.value} value={p.value}>
-                {p.text}
-              </option>
-            ))}
-          </select>
+      {filteredTask.length > 0 && (
+        <div className={Styles.taskListHeading}>
+          <h2>Total Tasks: {tasks.length}</h2>
+          <div>
+            <label htmlFor="filter">Filter: </label>
+            <select onChange={handleFilter} name="" id="filter">
+              {priorities.map((p) => (
+                <option key={p.value} value={p.value}>
+                  {p.text}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
+      )}
 
       {filteredTask.length > 0 ? (
         <div

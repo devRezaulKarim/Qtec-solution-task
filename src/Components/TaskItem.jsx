@@ -66,6 +66,7 @@ export default function TaskItem({
   return (
     <div className={`${Styles.taskItem} ${Styles[priority]}`}>
       <div>
+        {/* conditionally rendering the input field and task displaying while updating the task */}
         {updatingId === id ? (
           <form onSubmit={handleSavingUpdateTask} action="">
             <input

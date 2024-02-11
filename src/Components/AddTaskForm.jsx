@@ -14,7 +14,7 @@ export default function AddTaskForm() {
   const [task, setTask] = useState("");
   const [priority, setPriority] = useState(priorities[0]);
 
-  //handling reducer
+  //handling context
   const { addTask } = useContext(GlobalContext);
 
   //handling add task action

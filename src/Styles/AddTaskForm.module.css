@@ -63,3 +63,9 @@
     box-shadow: unset;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .formContainer form {
+    width: 95%;
+  }
+}

@@ -46,3 +46,18 @@
   min-width: 49%;
   padding: 8px;
 }
+
+@media screen and (max-width: 767px) {
+  .taskListHeading {
+    flex-direction: column;
+  }
+  .tasksList {
+    flex-direction: column;
+  }
+
+  .verticalLine {
+    &::after {
+      display: none;
+    }
+  }
+}

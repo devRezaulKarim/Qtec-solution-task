@@ -10,6 +10,8 @@ export default function TasksList({ tasks, completeTasks }) {
   const [deletingTaskId, setDeletingTaskId] = useState(null);
   const { deleteTask } = useContext(GlobalContext);
 
+
+  //handling delete task action
   const handleDeleteTask = () => {
     deleteTask(deletingTaskId);
     setDeletingTaskId(null);
@@ -19,6 +21,7 @@ export default function TasksList({ tasks, completeTasks }) {
       hideProgressBar: true,
     });
   };
+  
   return (
     <div>
       <h3 className={Styles.heading}>
