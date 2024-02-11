@@ -22,5 +22,5 @@ This is a simple Todo application built using ReactJS. It allows users to manage
 
 ## Demo
 
-## (Live Link)[https://qtec-solution-task.vercel.app/]
+## https://qtec-solution-task.vercel.app/
 
