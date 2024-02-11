@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { MdEditDocument } from "react-icons/md";
 import { FaCheckSquare } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 /* eslint-disable react/prop-types */
 export default function TaskItem({ task, updatingId, setUpdatingId }) {
@@ -35,8 +36,21 @@ export default function TaskItem({ task, updatingId, setUpdatingId }) {
 
   const handleSavingUpdateTask = (e) => {
     e.preventDefault();
-    updateTask({ todo: updateTodo, id: updatingId, priority: updatePriority });
-    setUpdatingId(null);
+
+    if (updateTodo.trim()) {
+      updateTask({
+        todo: updateTodo,
+        id: updatingId,
+        priority: updatePriority,
+      });
+      setUpdatingId(null);
+    } else {
+      toast.warn("Task can't be empty!", {
+        autoClose: 1500,
+        theme: "colored",
+        hideProgressBar: true,
+      });
+    }
   };
 
   return (
